@@ -147,7 +147,7 @@ riscv riscv_i (
     .usb_uart_rxd(usb_uart_rxd),
     .usb_uart_txd(usb_uart_txd));
 
-ethernet_vcu1525 ethernet_vcu1525_i (
+ethernet_vcu118 ethernet_vcu118_i (
     .clock_ok(eth_clock_ok),
     .clock(eth_clock),
 

@@ -23,7 +23,7 @@ THE SOFTWARE.
 
 */
 
-module ethernet_vcu1525 #(
+module ethernet_vcu118 #(
     // Timestamping configuration (port)
     parameter PTP_TS_ENABLE = 0,
     parameter TX_PTP_TS_FIFO_DEPTH = 32,
