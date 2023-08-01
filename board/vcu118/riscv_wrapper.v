@@ -17,8 +17,8 @@ module riscv_wrapper (
     output wire ddr4_sdram_c0_odt,
     output wire ddr4_sdram_c0_par,
     output wire ddr4_sdram_c0_reset_n,
-    input  wire default_300mhz_clk0_clk_n,
-    input  wire default_300mhz_clk0_clk_p,
+    input  wire default_250mhz_clk1_clk_n,
+    input  wire default_250mhz_clk1_clk_p,
 
     /* IIC */
     inout  wire iic_main_scl_io,
@@ -112,8 +112,8 @@ riscv riscv_i (
     .ddr4_sdram_c0_odt(ddr4_sdram_c0_odt),
     .ddr4_sdram_c0_par(ddr4_sdram_c0_par),
     .ddr4_sdram_c0_reset_n(ddr4_sdram_c0_reset_n),
-    .default_300mhz_clk0_clk_n(default_300mhz_clk0_clk_n),
-    .default_300mhz_clk0_clk_p(default_300mhz_clk0_clk_p),
+    .default_250mhz_clk1_clk_n(default_250mhz_clk1_clk_n),
+    .default_250mhz_clk1_clk_p(default_250mhz_clk1_clk_p),
     .eth_clock_ok(eth_clock_ok),
     .eth_clock(eth_clock),
     .eth_gt_user_clock(eth_gt_user_clock),

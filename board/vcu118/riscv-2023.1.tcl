@@ -458,7 +458,7 @@ proc create_hier_cell_DDR { parentCell nameHier } {
 
   create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:ddr4_rtl:1.0 ddr4_sdram_c0
 
-  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 default_300mhz_clk0
+  create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 default_250mhz_clk1
 
 
   # Create pins
@@ -472,7 +472,7 @@ proc create_hier_cell_DDR { parentCell nameHier } {
   set ddr4_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ddr4:2.2 ddr4_0 ]
   set_property -dict [ list \
    CONFIG.ADDN_UI_CLKOUT1_FREQ_HZ {None} \
-   CONFIG.C0_CLOCK_BOARD_INTERFACE {default_300mhz_clk0} \
+   CONFIG.C0_CLOCK_BOARD_INTERFACE {default_250mhz_clk1} \
    CONFIG.C0_DDR4_BOARD_INTERFACE {ddr4_sdram_c0} \
    CONFIG.C0.DDR4_AxiIDWidth {4} \
  ] $ddr4_0
@@ -495,7 +495,7 @@ proc create_hier_cell_DDR { parentCell nameHier } {
   # Create interface connections
   connect_bd_intf_net -intf_net RocketChip_MEM_AXI4 [get_bd_intf_pins S00_AXI] [get_bd_intf_pins smartconnect_1/S00_AXI]
   connect_bd_intf_net -intf_net ddr4_0_C0_DDR4 [get_bd_intf_pins ddr4_sdram_c0] [get_bd_intf_pins ddr4_0/C0_DDR4]
-  connect_bd_intf_net -intf_net default_300mhz_clk0_1 [get_bd_intf_pins default_300mhz_clk0] [get_bd_intf_pins ddr4_0/C0_SYS_CLK]
+  connect_bd_intf_net -intf_net default_250mhz_clk1_1 [get_bd_intf_pins default_250mhz_clk1] [get_bd_intf_pins ddr4_0/C0_SYS_CLK]
   connect_bd_intf_net -intf_net smartconnect_0_M01_AXI [get_bd_intf_pins C0_DDR4_S_AXI_CTRL] [get_bd_intf_pins ddr4_0/C0_DDR4_S_AXI_CTRL]
   connect_bd_intf_net -intf_net smartconnect_1_M00_AXI [get_bd_intf_pins ddr4_0/C0_DDR4_S_AXI] [get_bd_intf_pins smartconnect_1/M00_AXI]
 
@@ -553,10 +553,10 @@ proc create_root_design { parentCell } {
 
   set ddr4_sdram_c0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddr4_rtl:1.0 ddr4_sdram_c0 ]
 
-  set default_300mhz_clk0 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 default_300mhz_clk0 ]
+  set default_250mhz_clk1 [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 default_250mhz_clk1 ]
   set_property -dict [ list \
-   CONFIG.FREQ_HZ {300000000} \
-   ] $default_300mhz_clk0
+   CONFIG.FREQ_HZ {250000000} \
+   ] $default_250mhz_clk1
 
   set eth_rx_axis [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:axis_rtl:1.0 eth_rx_axis ]
   set_property -dict [ list \
@@ -646,7 +646,7 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net axi_iic_0_IIC [get_bd_intf_ports iic_main] [get_bd_intf_pins IO/iic_main]
   connect_bd_intf_net -intf_net clk_user_1 [get_bd_intf_ports clk_user] [get_bd_intf_pins clk_wiz_0/CLK_IN1_D]
   connect_bd_intf_net -intf_net ddr4_sdram_c0 [get_bd_intf_ports ddr4_sdram_c0] [get_bd_intf_pins DDR/ddr4_sdram_c0]
-  connect_bd_intf_net -intf_net default_300mhz_clk0 [get_bd_intf_ports default_300mhz_clk0] [get_bd_intf_pins DDR/default_300mhz_clk0]
+  connect_bd_intf_net -intf_net default_250mhz_clk1 [get_bd_intf_ports default_250mhz_clk1] [get_bd_intf_pins DDR/default_250mhz_clk1]
   connect_bd_intf_net -intf_net pcie_refclk [get_bd_intf_ports pcie_refclk] [get_bd_intf_pins IO/pcie_refclk]
   connect_bd_intf_net -intf_net qdma_0_pcie_mgt [get_bd_intf_ports pci_express_x16] [get_bd_intf_pins IO/pci_express_x16]
   connect_bd_intf_net -intf_net smartconnect_0_M01_AXI [get_bd_intf_pins DDR/C0_DDR4_S_AXI_CTRL] [get_bd_intf_pins IO/M01_AXI]
